@@ -1,5 +1,7 @@
 # task 1
 
+import math
+
 class Temperature:
     """
     Represents a temperature in Celsius, Fahrenheit or Kelvin.
@@ -15,6 +17,8 @@ class Temperature:
         ValueError: if the unit is invalid or the temperatue is below absolute zero.
 
     """
+    TOLERANCE = 1e-9
+
     def __init__(self, value: float, unit: str = 'C'):
         self._value = float(value)
         self._unit = unit.upper()
@@ -30,6 +34,16 @@ class Temperature:
 
         if self._unit == 'K' and self._value < 0:
             raise ValueError("Temperature cannot be below absolute zero")
+
+    @property
+    def value(self) -> float:
+        """Return the temperature value."""
+        return self._value
+
+    @property
+    def unit(self) -> str:
+        """Return the temperature unit."""
+        return self._unit
 
     def to_celsius(self) -> float:
         """Return the temperature converted to celsius."""
@@ -58,7 +72,7 @@ class Temperature:
         elif self._unit == 'F':
             return (self._value - 32) * 5/9 + 273.15
 
-    def convert_to(self, target_unit: str) -> Temperature:
+    def convert_to(self, target_unit: str) -> "Temperature":
         """
         Returns a new Temperature instance in the specified unit.
 
@@ -84,4 +98,75 @@ class Temperature:
         
         else:
             raise ValueError("Invalid target unit. Use 'C', 'F', or 'K'.")
+
+    def __repr__(self) -> str:
+        """Return an unambiguous representation of theTemperature instance."""
+        return f"Temperature: {self._value}, '{self._unit}')"
+
+    def __str__(self) -> str:
+        """Returns a human-readable string formatted to two decimal places."""
+        if self._unit == 'K':
+            return f"{self._value:.2f} K"
+
+        return f"{self._value:.2f} °{self._unit}"
+
+    def __eq__(self, other):
+        """Check if two Temperature instances are equal within the tolerance of 1e-9."""
+        if not isinstance(other, Temperature):
+            return NotImplemented
+        
+        return math.isclose(
+            self.to_celsius(),
+            other.to_celsius(),
+            rel_tol=0,
+            abs_tol=self.TOLERANCE
+            )
+
+    def __ne__(self, other):
+        """Check if two Temperature instances are not equal within the tolerance of 1e-9."""
+        if not isinstance(other, Temperature):
+            return NotImplemented
+        
+        return not self.__eq__(other)
+
+    def __lt__(self, other):
+        """Check if this Temperature instance is less than another within the tolerance of 1e-9."""
+        if not isinstance(other, Temperature):
+            return NotImplemented
+        
+        return self.to_celsius() < other.to_celsius() and self != other
+
+    def __le__(self, other):
+        """Check if this Temperature instance is less than or equal to another within the tolerance of 1e-9."""
+        if not isinstance(other, Temperature):
+            return NotImplemented
+        
+        return self < other or self == other
+
+    def __gt__(self, other):
+        """Check if this Temperature instance is greater than another within the tolerance of 1e-9."""
+        if not isinstance(other, Temperature):
+            return NotImplemented
+        
+        return self.to_celsius() > other.to_celsius() and self != other
+
+    def __ge__(self, other):
+        """Check if this Temperature instance is greater than or equal to another within the tolerance of 1e-9."""
+        if not isinstance(other, Temperature):
+            return NotImplemented
+        
+        return self > other or self == other
+
+
+
+a = Temperature(0, 'C')
+b = Temperature(32, 'F')
+c = Temperature(300, 'K')
+
+print(a == b)
+print(a != b)
+print(a < c)
+print(a <= b)
+print(c < a)
+print(c >= b)
 
