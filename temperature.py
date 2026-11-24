@@ -159,6 +159,8 @@ class Temperature:
 
 
 
+#test cases to check the comparison operators
+
 a = Temperature(0, 'C')
 b = Temperature(32, 'F')
 c = Temperature(300, 'K')
