@@ -101,7 +101,7 @@ class Temperature:
 
     def __repr__(self) -> str:
         """Return an unambiguous representation of theTemperature instance."""
-        return f"Temperature: {self._value}, '{self._unit}')"
+        return f"Temperature({self._value}, '{self._unit}')"
 
     def __str__(self) -> str:
         """Returns a human-readable string formatted to two decimal places."""
@@ -156,19 +156,3 @@ class Temperature:
             return NotImplemented
         
         return self > other or self == other
-
-
-
-#test cases to check the comparison operators
-
-a = Temperature(0, 'C')
-b = Temperature(32, 'F')
-c = Temperature(300, 'K')
-
-print(a == b)
-print(a != b)
-print(a < c)
-print(a <= b)
-print(c < a)
-print(c >= b)
-
