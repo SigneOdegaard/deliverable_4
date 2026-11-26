@@ -85,3 +85,43 @@ def test_greater_than_or_equal():
     f2 = Fraction(1, 2)
 
     assert f1 >= f2
+
+
+
+# Testing of the othe special methods: 
+# Test addition
+def test_addition():
+    f1 = Fraction(1, 2)
+    f2 = Fraction(1, 4)
+
+    result = f1 + f2
+
+    assert result.numerator == 6
+    assert result.denominator == 8
+
+# Test subtraction
+def test_subtraction():
+    f1 = Fraction(3, 4)
+    f2 = Fraction(1, 4)
+
+    result = f1 - f2
+
+    assert result.numerator == 8
+    assert result.denominator == 16
+
+# Test multiplication
+def test_multiplication():
+    f1 = Fraction(1, 2)
+    f2 = Fraction(2, 3)
+
+    result = f1 * f2
+
+    assert result.numerator == 2
+    assert result.denominator == 6
+
+# Test string representation
+def test_string():
+    f = Fraction(1, 2)
+
+    assert str(f) == "1/2"
+
