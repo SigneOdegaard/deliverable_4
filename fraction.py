@@ -92,7 +92,7 @@ class Fraction:
 
 
 # subtraction-method:
- def __sub__(self, other):
+    def __sub__(self, other):
         if not isinstance(other, Fraction):
             return NotImplemented
 
@@ -106,7 +106,7 @@ class Fraction:
         return Fraction(new_numerator, new_denominator)
 
 # Multiplication-method:
-def __mul__(self, other):
+    def __mul__(self, other):
         if not isinstance(other, Fraction):
             return NotImplemented
 
@@ -118,6 +118,6 @@ def __mul__(self, other):
 
 # Method - String representation of the fraction
 # --> determines how a fraction should be displayed as text when we use print() or str() in Python
-def __str__(self):
+    def __str__(self):
         return f"{self.numerator}/{self.denominator}"
 
