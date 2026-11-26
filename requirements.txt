@@ -1,0 +1,4 @@
+#Information on ourvirtual environment
+
+pytest>=9.2.0  # Used to run the tests for Temperature and Fraction
+ipykernel      # Makes it possible to use the virtual environment (.venv) as a kernel in Jupyter Notebook.
