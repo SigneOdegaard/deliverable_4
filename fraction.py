@@ -74,7 +74,50 @@ class Fraction:
 
     
 
-    
+# Other special methods
 
-    
+# addition-method: 
+    def __add__(self, other):
+        if not isinstance(other, Fraction):
+            return NotImplemented
+
+        new_numerator = (
+            self.numerator * other.denominator
+            + other.numerator * self.denominator
+        )
+
+        new_denominator = self.denominator * other.denominator
+
+        return Fraction(new_numerator, new_denominator)
+
+
+# subtraction-method:
+ def __sub__(self, other):
+        if not isinstance(other, Fraction):
+            return NotImplemented
+
+        new_numerator = (
+            self.numerator * other.denominator
+            - other.numerator * self.denominator
+        )
+
+        new_denominator = self.denominator * other.denominator
+
+        return Fraction(new_numerator, new_denominator)
+
+# Multiplication-method:
+def __mul__(self, other):
+        if not isinstance(other, Fraction):
+            return NotImplemented
+
+        new_numerator = self.numerator * other.numerator
+        new_denominator = self.denominator * other.denominator
+
+        return Fraction(new_numerator, new_denominator)
+
+
+# Method - String representation of the fraction
+# --> determines how a fraction should be displayed as text when we use print() or str() in Python
+def __str__(self):
+        return f"{self.numerator}/{self.denominator}"
 
